@@ -1,0 +1,23 @@
+body {
+  display: flex;
+}
+img {
+  width: 800px;
+  height: 500px;
+  padding-bottom: 10px;
+}
+h3 {
+  padding-top: 40px;
+}
+nav {
+  position: fixed;
+}
+p {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: large;
+}
