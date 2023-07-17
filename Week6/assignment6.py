@@ -1,6 +1,15 @@
 from flask import Flask,render_template, request
 import re
+from flaskext.mysql import MySQL
 app=Flask(__name__)
+mysql = MySQL(autocommit=True)
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'Smallworld@9286'
+app.config['MYSQL_DATABASE_DB'] = 'employee'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_PORT'] = '3306'
+mysql.init_app(app)
+
 count=0
 @app.route('/')
 def base():
@@ -33,6 +42,12 @@ def report():
     if(flag==0):
         count=0
         message="<h3>Your Password Passed the Requirements<h3>"
+        conn = mysql.connect()
+        cursor =conn.cursor()
+        cursor.execute("INSERT INTO uname(username, password) VALUES (%s, %s)", (Username, Password))
+
+
+        cursor.close()
         
  
     if flag == -1:
@@ -47,4 +62,4 @@ def report():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
